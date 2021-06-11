@@ -1,0 +1,11 @@
+1. figure out how to make the inventory list an actual list
+(like i could hard code it but that's not elegant or efficient.)
+2. add more inventory
+3. add the rest of the directions
+4. placeholder text for the can't add more items text? 
+5. disable inventory button if at the end of the directions list
+6. update readme
+7. trade functionality??
+
+8. this needs a storyline, right? i should write one out, even if it's basic. like why are we competing against the birds for treasure yanno
+

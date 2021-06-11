@@ -39,59 +39,15 @@
 /* Selectors */
 
 body {
-    background-color: rgb(219, 215, 179);
+    background-color: rgb(214, 213, 190);
     font-family: 'Volkhov', 'Georgia', serif;
     text-align: center;
 }
 
-.button {
-  background-color: rgb(66, 8, 121);
-  color: bisque; 
-  font-family: Volkhov, sans-serif;
-  font-size: 25px;
+#birdqueenbody {
+  background-color: black;
+  color: white;
 }
-
-.button:active {
-  background-color: rgb(26, 0, 80);
-  transform: translateY(2px);
-}
-
-#reset{
-  font-size: 15px;
-}
-
-h1 {
-    font-family: 'Berkshire Swash', 'Georgia', serif;
-    display: inline;
-    font-size: 70px;
-}
-
-h2 {
-  color: rgb(108, 0 ,140);
-  font-family: 'Staatliches';
-}
-
-p {
-    font-family: 'Volkhov', 'Georgia', serif;
-}
-
-.link {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-decoration: none;
-  font-style: italic;
-  color: rgb(108, 0, 140);
-  font-size: 48px;
-}
-
-
-.centerfit {
-  z-index: 0; 
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-} 
 
 .birbs {
   width: 150px;
@@ -99,8 +55,74 @@ p {
   display: inline;
 }
 
-#gameframe {
-  top: 50%;
+.button, .directionbutton, .BQbutton {
+  background-color: rgb(66, 8, 121);
+  color: bisque; 
+  font-family: Volkhov, sans-serif;
+  font-size: 15px;
+}
+
+.button:active, .directionbutton:active, .BQbutton:active{
+  background-color: rgb(31, 31, 31);
+  transform: translateY(2px);
+}
+
+.BQtext {
+  color: white;
+}
+
+#BQaddinventory {
+  background-color: rgb(61, 55, 55);
+  color: white;
+}
+
+#credits {
+  font-size: 10px;
+  color: rgb(108, 0, 140);
+}
+
+.BQbutton {
+  background-color: rgb(61, 55, 55);
+  color: white;
+  margin-top: 5px;
+}
+
+.directionbutton, .BQbutton{
+  font-size: 25px;
+}
+
+h1 {
+    font-family: 'Berkshire Swash', 'Georgia', serif;
+    display: inline;
+    font-size: 100px;   
+}
+
+h2 {
+  color: rgb(108, 0 ,140);
+  font-family: 'Staatliches';
+}
+
+h5 {
+  font-family: 'Volkhov', sans-serif;
+  color:rgb(59, 57, 35);
+  font-size: 14px;
+}
+#inventorylist {
+  font-family: 'Volkhov', serif;
+  font-size: 20px;
+  max-width: 600px;
+  margin: auto;
+  padding-top: 15px;
+}
+
+p {
+    font-family: 'Volkhov', 'Georgia', serif;
+}
+
+#reset{
+  font-size: 15px;
+  width: 150px;
+  margin: auto;
 }
 
 #winlose {
@@ -108,10 +130,35 @@ p {
   font-size: 50px;
 }
 
-#inventorylist {
-  font-family: 'Volkhov', serif;
-  font-size: 20px;
-  max-width: 600px;
-  margin: auto;
-  padding-top: 15px;
+
+/* pgae layout */
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main,
+.sidebar {
+  padding: 15px;
+  background-color: rgb(214, 213, 190);
+}
+
+.main {
+  width: 60%;
+  height: 100vh;
+  margin-left: 20%;
+}
+
+#BQmain {
+  background-color: black;
+}
+
+.sidebar {
+  width: 25%;
+  height: 25vh;
+  margin-right: 20%;
+}
+
+#BQsidebar {
+  background-color: black;
 }
