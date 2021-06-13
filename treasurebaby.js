@@ -13,44 +13,43 @@ const items = {
   itemList: [
     //.itemList[0][0] to access items
     //.itemList[0][1] to access points
-['winding key for a grandfather clock', 15],
-['small earthenware marble', 8],
-['small glass marble', 9], 
-['large glass marble', 10], 
-['three iron nails in a sealed glass bottle', 40], 
-['a single pearl earring', 12], 
-['a sprig of rosemary', 19], 
-['the tab from a can of soda', 2], 
-['a tooth', 13], 
-['a scrap of newspaper with a mysterious message', 5],
-['a molar', 86], 
-['very sharp glass', -14], 
-['a page torn from a diary', 10], 
-['the friends you made along the way', 35], 
-['an empty milk carton', 3], 
-['the handprint of a child in clay', 26], 
-['a broken diary lock', 18], 
-['a rusted old bottle cap', 6], 
-['a guitar pick', 12], 
-['one unburnt match', 1], 
-['a book of matches missing one match', 10], 
-['a red poker chip', 5], 
-['a blue poker chip', 10], 
-['a white poker chip', 25], 
-['a spool of thread', 34], 
-['the wrapper from a piece of hard candy', 10], 
-['one child size glove', 15], 
-['a lighter', 29], 
-['a diamond ring', -15], 
-['a time worm', 69],
-['a pair of sunglasses missing one lens', 32],
-['goose poop', -25],
-['jonathan', 27],
-['a crushed beer can from the sixties', 7],
-['a cork from a wine bottle', -9],
-['a crumpled up reciept', 3],
-['a cool rock', 12],
-['a small pile of pebbles', 9]
+['winding key for a grandfather clock', 15, 'You find an old key, for winding a grandfather clock.'],
+['small earthenware marble', 8, 'You find a small earthenware marble. It feels cool in your hand.'],
+['small glass marble', 9, 'You find a small glass marble, swirled with red and blue.'], 
+['large glass marble', 10, 'You find a large glass marble. It feels heavier than you expected.'], 
+['three iron nails in a sealed glass bottle', 40, 'You find three iron nails in a sealed glass bottle. You shake it, and the nails clink against the glass.'], 
+['a single pearl earring', 12, 'You find a single pearl earring. It looks expensive.'], 
+['a sprig of rosemary', 19, 'A sprig of rosemary. It smells wonderful.'], 
+['the tab from a can of soda', 2, 'Ooh, a tab from a can of soda. It reminds you that you\'re thirsty.'], 
+['a tooth', 13, 'Is this a real human tooth?'], 
+['a scrap of newspaper with a mysterious message', 5, 'You can read the words on this scrap of newspaper, but they don\'t make any sense.'],
+['a molar', 86, 'You find a wisdom tooth.'], 
+['very sharp glass', -14, 'You cut your hand on a piece of sharp glass. It didn\'t look this sharp when you picked it up.'], 
+['a page torn from a diary', 10, 'You find a page torn from a diary. "Dear Diary", it reads, "I don\'t know if I\'ll ever find my way out. The birds keep calling. Their talons are sh-" The page cuts off.'], 
+['an empty milk carton', 3, 'You find an empty milk carton. It looks like someone crumped it up.'], 
+['the handprint of a child in clay', 26, 'You find a handprint of a child, preserved in clay. It looks like it broke off a larger piece.'], 
+['a broken diary lock', 18, 'You find a small lock for a diary, cheaply made, and the top is broken.'], 
+['a rusted old bottle cap', 6, 'You find a rusted bottle cap. You can\'t make out the logo.'], 
+['a guitar pick', 12, 'You find a guitar pick, made out of swirling pink plastic.'], 
+['one unburnt match', 1, 'You find one unburnt match.'], 
+['a book of matches missing one match', 10, 'You find a book of matches. There is one match missing.'], 
+['a red poker chip', 5, 'You find a red poker chip.'], 
+['a blue poker chip', 10, 'You find a blue poker chip.'], 
+['a white poker chip', 25, 'You find a white poker chip.'], 
+['a spool of thread', 34, 'You find a spool of thread. It\'s a yellow ochre, and feels rough.'], 
+['the wrapper from a piece of hard candy', 10, 'You find the wrapper from a piece of hard candy. The wrapper is shining gold, and crinkles in your fingers.'], 
+['one child size glove', 15, 'You find one glove, small enough that it could only fit a child\'s hand.'], 
+['a lighter', -27, 'You find a cheap white lighter. The flame won\'t catch.'], 
+['a diamond ring', -15, 'A solitare diamond ring. The diamond gleams in the light.'], 
+['a time worm', 69, 'You find a time worm. Yes, a time worm!'],
+['a pair of sunglasses missing one lens', 32, 'You find a pair of sunglasses, but one lens is missing.'],
+['goose poop', -25, 'Oh no. You find some goose poop. How inauspicious.'],
+['jonathan', 27, 'You find a stuffed toy that looks like a beaver. It has a rainbow tail, and the name "Jonathan" is embroidered on the side.'],
+['a crushed beer can from the sixties', 7, 'A crushed beer can, with a logo you don\'t recognize, but the logo looks decades old.'],
+['a cork from a wine bottle', -9, 'You find a cork from a wine bottle. A chunk of it is ripped off.'],
+['a crumpled up reciept', 3, 'You find a crumped reciept. The text is faded and part of the paper has turned black.'],
+['a cool rock', 12, 'You find a wicked cool rock!'],
+['a small pile of pebbles', 9, 'You find a pile of pebbles. They feel dusty.']
 ],
 
   addUserItem: function(num) {
@@ -60,7 +59,8 @@ const items = {
           userScore += this.itemList[num][1];
           document.getElementById('inventorylist').innerHTML = userInventory.join(' • ')
           document.getElementById('yourscore').innerHTML = userScore
-      } else {document.getElementById('cannotAddMoreItems').innerHTML = "Hmm. You've already found one of those...you don't need two."}
+          document.getElementById('inventoryGameText').innerHTML = this.itemList[num][2]
+      } else {document.getElementById('inventoryGameText').innerHTML = "Hmm. You've already found one of those...you don't need two."}
       } 
   },
 
@@ -108,11 +108,11 @@ function directionRandomCount () {
 /////////////////////Directions Text///////////////////////
 
 const additionalNorthText = [
-  "The wind, which has been blowing all morning, goes still.",
-  "You encounter a field. In the distance, you can see the electricity pylons loom over the landscape.",
+  "The wind blows gently, rustling the leaves and bushes. It feels cool upon your face.",
+  "You encounter a field. In the distance, you can see the electricity pylons loom over the landscape.",  
+  "You come to a small clearing. A small pile of rocks sits in the middle.",
   'A small fox runs frantically across the path. What is it running from?',
   "The woods are getting deeper. Wasn't there a path here a moment ago?",
-  "You come to a small clearing. A small pile of rocks sits in the middle.",
   "Is it getting darker?",
   "A bird calls in the distance. Another bird calls in the distance. Another bird calls in the distance. Another bird-"
 ]
@@ -128,23 +128,23 @@ const additionalSouthText = [
 ]
 
 const additionalEastText = [
-  'east 1',
-  'east 2',
-  'east 3',
-  'east 4',
-  'east 5',
-  'east 6',
-  'east 7'
+  'A small lake sparkles to your left. The water is clear, and waves lap gently upon the shore.',
+  'A bird soars overhead. Its shadow crosses your path.',
+  'A swan glides by, breaking the water\'s calm surface. Is it looking at you?',
+  'The waves are getting choppier; the air smells of rain.',
+  'Clouds seem to be gathering in the distance. The sky is getting darker - or is it the air?',
+  'You hear a bird screech in the distance. It almost sounds like laughter.',
+  'Are you scared?'
 ]
 
 const additionalWestText = [
-  'west 1', 
-  'west 2',
-  'west 3',
-  'west 4',
-  'west 5',
-  'west 6',
-  'west 7'
+  'The smell of pine and salt permeates the air. Ferns spring up along the path, unfurling towards the sky.', 
+  'A squirrel runs up a tree, spiraling around the trunk.',
+  'A lively warble breaks the silence of the forest. It sounds like a familiar song.',
+  'A tree branch has broken, and hangs over the path. You touch the bark; your hand comes away sticky.',
+  'The hair on the back of your neck rises. Is there someone else there?',
+  'It feels like you\'ve been walking in circles, but you don\'t recognize where you are.',
+  'Can you hear them?'
 ]
 
 
@@ -187,6 +187,8 @@ let totalCount = 0
 
   //NORTH//
   goNorth.addEventListener('click', function() {
+
+    document.getElementById('inventoryGameText').innerHTML = ''
     
     if (totalCount === 28) {
       window.open("birdqueen.html", "_self")
@@ -204,7 +206,7 @@ let totalCount = 0
       b -= 8;
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
-      document.getElementById('cannotAddMoreItems').innerHTML = ''
+      document.getElementById('inventoryGameText').innerHTML = ''
     //Gametext directions for length of directions array
       if (northCount < additionalNorthText.length){
         document.getElementById('gametext').innerHTML = "You go NORTH. " + additionalNorthText[northCount]
@@ -234,7 +236,7 @@ let totalCount = 0
       b -= 8;
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
-      document.getElementById('cannotAddMoreItems').innerHTML = ''
+      document.getElementById('inventoryGameText').innerHTML = ''
     //Gametext directions for length of directions array
       if (southCount < additionalSouthText.length){
         document.getElementById('gametext').innerHTML = "You go SOUTH. " + additionalSouthText[southCount]
@@ -265,7 +267,7 @@ let totalCount = 0
 
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
-      document.getElementById('cannotAddMoreItems').innerHTML = ''
+      document.getElementById('inventoryGameText').innerHTML = ''
     //Gametext directions for length of directions array
       if (eastCount < additionalEastText.length){
         document.getElementById('gametext').innerHTML = "You go EAST. " + additionalEastText[eastCount]
@@ -295,7 +297,7 @@ let totalCount = 0
       b -= 8;
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
-      document.getElementById('cannotAddMoreItems').innerHTML = ''
+      document.getElementById('inventoryGameText').innerHTML = ''
     //Gametext directions for length of directions array
       if (westCount < additionalWestText.length){
         document.getElementById('gametext').innerHTML = "You go WEST. " + additionalWestText[westCount]
@@ -321,7 +323,7 @@ let inventoryCount = 0
 addInventoryButton.addEventListener('click', function(){
 
   if (itemsAllowedThisRound === null){
-    document.getElementById('cannotAddMoreItems').innerHTML = "You should start walking."
+    document.getElementById('inventoryGameText').innerHTML = "You should start walking."
     return;
   } 
   
@@ -337,10 +339,10 @@ addInventoryButton.addEventListener('click', function(){
   items.addComputerItem(number2);
   inventoryCount++
   } else {
-    document.getElementById('winlose').innerHTML = "Your pockets are full. You should drop some items. If the dev hasn't built in that functionality yet, please keep walking until the next stage."
+    document.getElementById('inventoryGameText').innerHTML = "Your pockets are full. You should drop some items. If the dev hasn't built in that functionality yet, please keep walking until the next stage."
   }
  } else if (itemsAddedThisRound > itemsAllowedThisRound){
-   document.getElementById('cannotAddMoreItems').innerHTML = "You have found all you can here. Continue on."
+   document.getElementById('inventoryGameText').innerHTML = "You have found all you can here. Continue on."
    itemsAddedThisRound = null;
    itemsAllowedThisRound = null;
  }
@@ -360,7 +362,7 @@ resetButton.addEventListener('click', function() {
   document.getElementById('yourscore').innerHTML = 0
   document.getElementById('birdscore').innerHTML = 0
   inventoryCount = 0
-  document.getElementById('cannotAddMoreItems').innerHTML = ''
+  document.getElementById('inventoryGameText').innerHTML = ''
   document.getElementById('gametext').innerHTML = 'The sun is shining, the birds are...whispering?'
     //Might be fun to make a randomized list of these for the reset button. 
 })

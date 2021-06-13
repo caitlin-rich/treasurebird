@@ -8,23 +8,27 @@
     <h1>TreasureBird</h1>
     <div class = 'wrapper'>
     <div class = 'main'>
-        <h5>You begin your walk on a beautiful day, the paths stretching out in front of you...where shall you go? </h5>
+        <h5>You begin your walk on a beautiful day, the paths stretching out in front of you...where shall you go? As you go, be sure to look around and see what treasures you can find. However, there may be someone - or something - looking for treasures as well.     </h5>
 
-
+    <!--Direction buttons-->
         
         <button type='button' class = 'directionbutton' id = 'northbutton'>Go North.</button><br>
         <button type='button' class = 'directionbutton' id = 'westbutton'>Go West.</button>
         <button type='button' class = 'directionbutton' id = 'eastbutton'>Go East.</button><br>
         <button type='button' class = 'directionbutton' id = 'southbutton'>Go South.</button>
+
+    <!--Game text and inventory buttons-->    
         
         <br><br>
         <h5 id='gametext'>The sun is shining, the birds are...hmm. It sounds like they're whispering.</h5>
         <br>
         <button type="button" class="button" id = 'addinventory'>What have you found?</button><br>
-        <h4 id = "cannotAddMoreItems"></h4>
+        <h4 id = "inventoryGameText"><i>Take a look around.</i></h4>
         <p id='winlose'></p>
         <button type="button" class="button" id = 'reset'>It's a new day.</button>
     </div>
+
+    <!--Sidebar showing inventory and score-->
 
      <div class = 'sidebar'>
         <h2>In Your Pockets:</h2> 

@@ -1,3 +1,10 @@
-1. fix BQ userScore
+
 2. clear 'You have one' message on next click
-3. BQ computer score/inventory not adding correctly
+
+4. add gametext content
+5. write better README
+6. text for each added item? items.itemList[0][1][2]??
+7. definitely need to build in a trade function but that might end up being down the road.
+8. What if there's random events that happen - like clicking addInventory could also cause you to lose an item? 
+9. listen. i know how to write a battle function. is it. do you fight the birds. is that even possible. 
+10. more intro text on index.html

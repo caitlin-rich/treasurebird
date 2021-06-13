@@ -74,6 +74,7 @@ body {
   color: bisque; 
   font-family: Volkhov, sans-serif;
   font-size: 15px;
+  margin-top: 5px;
 }
 
 .button:active, .directionbutton:active, .BQbutton:active{
@@ -99,7 +100,6 @@ body {
 .BQbutton {
   background-color: rgb(61, 55, 55);
   color: white;
-  margin-top: 5px;
 }
 
 .directionbutton, .BQbutton{

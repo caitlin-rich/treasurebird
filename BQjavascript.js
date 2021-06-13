@@ -7,17 +7,12 @@ let BQuserScore = 0
 let BQcomputerScore = 0
 
 
-let importedUserScore = (document.getElementById('yourscore').value)
-if (importedUserScore) {
-    BQuserScore = importedUserScore
-}
+let importedUserScore = (document.getElementById('yourscore').innerHTML)
 
-let importedComputerScore = (document.getElementById('birdscore').value)
-if (importedComputerScore) {
-    BQcomputerScore = importedComputerScore
-}
+BQuserScore = parseInt(importedUserScore)
 
-
+let importedComputerScore = (document.getElementById('birdscore').innerHTML)
+BQcomputerScore = parseInt(importedComputerScore)
 
 ///////////////////////////////////////////////////////
 
@@ -37,30 +32,23 @@ const items = {
   addUserItem: function(num) {
     if (num >= 0 && num < this.itemList.length) {
       if(!userInventory.includes(this.itemList[num][0])){
-          console.log(userInventory)
           userInventory.push(this.itemList[num][0]);
           BQuserScore += this.itemList[num][1];
-          console.log(BQuserScore)
           document.getElementById('test').innerHTML = userInventory.join(' - ')
           document.getElementById('yourscore').innerHTML = BQuserScore
+          document.getElementById('BQcannotAddMoreItems').innerHTML = this.itemList[num][2]
       } else {document.getElementById('BQcannotAddMoreItems').innerHTML = "Hmm. You've already found one of those...you don't need two."}
      }
     },
-
-
 
   addComputerItem: function(num) {
     if (num >= 0 && num < this.itemList.length) {
         if (!computerInventory.includes(this.itemList[num][0])){
           computerInventory.push(this.itemList[num][0]);
-          computerScore += this.itemList[num][1];
-          document.getElementById('birdscore').innerHTML = computerScore
+          BQcomputerScore += this.itemList[num][1];
+          document.getElementById('birdscore').innerHTML = BQcomputerScore
         }
-      } else if (num === 'random' || num === 'Random' || num === 'RANDOM') {
-            computerInventory.push(this.itemList[randomNumber()][0]);
-            computerScore += this.itemList[randomNumber()][1];
-            document.getElementById('computerscore').innerHTML = computerScore
-          } else {console.log('Please choose a number between 0 and ' + this.itemList.length)}
+      } 
   },
 
 }
