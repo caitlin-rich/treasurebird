@@ -4,6 +4,8 @@ let computerInventory = [];
 
 let userScore = 0;
 let computerScore = 0;
+
+
 ///////////////////////////////////////////////////////
 
 ///////////////Item List and Methods object////////////
@@ -51,8 +53,6 @@ const items = {
 ['a small pile of pebbles', 9]
 ],
 
-
-
   addUserItem: function(num) {
     if (num >= 0 && num < this.itemList.length) {
       if(!userInventory.includes(this.itemList[num][0])){
@@ -61,12 +61,7 @@ const items = {
           document.getElementById('inventorylist').innerHTML = userInventory.join(' • ')
           document.getElementById('yourscore').innerHTML = userScore
       } else {document.getElementById('cannotAddMoreItems').innerHTML = "Hmm. You've already found one of those...you don't need two."}
-      } else if (num === 'random' || num === 'Random' || num === 'RANDOM') {
-            userInventory.push(this.itemList[randomNumber()][0]);
-            userScore += this.itemList[randomNumber()][1];
-            document.getElementById('inventorylist').innerHTML = userInventory.join('; ')
-            document.getElementById('yourscore').innerHTML = userScore
-          } else {console.log('Please choose a number between 0 and ' + this.itemList.length)}
+      } 
   },
 
   addComputerItem: function(num) {
@@ -76,15 +71,12 @@ const items = {
           computerScore += this.itemList[num][1];
           document.getElementById('birdscore').innerHTML = computerScore
         }
-      } else if (num === 'random' || num === 'Random' || num === 'RANDOM') {
-            computerInventory.push(this.itemList[randomNumber()][0]);
-            computerScore += this.itemList[randomNumber()][1];
-            document.getElementById('computerscore').innerHTML = computerScore
-          } else {console.log('Please choose a number between 0 and ' + this.itemList.length)}
+      }
   },
 
 
-  //AutoAdd is used to add a specific amount of items to inventories at once. 
+  //AutoAdd is used to add a specific amount of items to inventories at once.
+  //So far I have no use for this but I'm keeping it for if that changes. 
   autoAdd: function(num) {
     let i = 0;
     while (i < num) {
@@ -118,41 +110,43 @@ function directionRandomCount () {
 const additionalNorthText = [
   "The wind, which has been blowing all morning, goes still.",
   "You encounter a field. In the distance, you can see the electricity pylons loom over the landscape.",
-  "The woods are getting deeper, it seems - wasn't there a path here a moment ago?",
-  "You come to a small clearing; a ring of mushrooms sits in the middle.",
+  'A small fox runs frantically across the path. What is it running from?',
+  "The woods are getting deeper. Wasn't there a path here a moment ago?",
+  "You come to a small clearing. A small pile of rocks sits in the middle.",
+  "Is it getting darker?",
+  "A bird calls in the distance. Another bird calls in the distance. Another bird calls in the distance. Another bird-"
 ]
 
 const additionalSouthText = [
-  'placeholder text bc i am tired 1',
-  'ditto 2',
-  'ditto 3',
-  'ditto 4',
-  'ditto 5'
+  'A field of wild flowers spreads out on your right, bright and joyful.',
+  'Although you could hear traffic a minute ago, the noise of the cars fades into the background.',
+  'The air smells like something you forgot a long time ago.',
+  'A bird flies across your path, startling you, and you jump back. Something cracks beneath your heel.',
+  'It sounds like someone calls your name in the distance, but you haven\'t seen another person on the path.',
+  'Why are you breathing so quickly?',
+  'What\'s that behind you?'
 ]
 
 const additionalEastText = [
   'east 1',
   'east 2',
   'east 3',
-  'east 1',
-  'east 2',
-  'east 3',
-  'east 1',
-  'east 2',
-  'east 3',
-  'east 1',
-  'east 2',
-  'east 3',
-  'east 1',
-  'east 2',
-  'east 3'
+  'east 4',
+  'east 5',
+  'east 6',
+  'east 7'
 ]
 
 const additionalWestText = [
   'west 1', 
   'west 2',
-  'west 3'
+  'west 3',
+  'west 4',
+  'west 5',
+  'west 6',
+  'west 7'
 ]
+
 
 
 /////////////////End of Directions Text//////////////////////
@@ -177,7 +171,6 @@ function darkenBackground(r, g, b){
   return "rgb(" + newBackground.join(', ') + ")"
 }
 
-//with -= 8 per click it takes 27 clicks to get to the black screen. so on the 28th click, we move to the hall of the bird queen. PERFECT. 
 
 //Directions buttons//
 let goNorth = document.getElementById('northbutton')
@@ -190,104 +183,132 @@ let southCount = 0
 let eastCount = 0  
 let westCount = 0
 
+let totalCount = 0
 
-
-//NORTH//
-goNorth.addEventListener('click', function() {
-  //Darken background with each click
-    document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-    r -= 8;
-    g -= 8;
-    b -= 8;
-  //Calculate amount of items allowed and clear gametext
-    itemsAllowedThisRound = directionRandomCount()
-    document.getElementById('cannotAddMoreItems').innerHTML = ''
-  //Gametext directions for length of directions array
-    if (northCount < additionalNorthText.length){
-      document.getElementById('gametext').innerHTML = "You go NORTH. " + additionalNorthText[northCount]
-      northCount++
-
-  } else {
-      document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
-      goNorth.disabled = true;
+  //NORTH//
+  goNorth.addEventListener('click', function() {
+    
+    if (totalCount === 28) {
+      window.open("birdqueen.html", "_self")
+      localStorage.setItem('userInventory', userInventory.join(' • '))
+      localStorage.setItem('userScore', userScore)
+      localStorage.setItem('computerScore', computerScore)
     }
-  
-})
 
-//SOUTH//
-goSouth.addEventListener('click', function() {
-  //Darken background with each click
-    document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-    r -= 8;
-    g -= 8;
-    b -= 8;
-  //Calculate amount of items allowed and clear gametext
-    itemsAllowedThisRound = directionRandomCount()
-    document.getElementById('cannotAddMoreItems').innerHTML = ''
-  //Gametext directions for length of directions array
-    if (southCount < additionalSouthText.length){
-      document.getElementById('gametext').innerHTML = "You go SOUTH. " + additionalSouthText[southCount]
-      southCount++
+    //Darken background with each click
+      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      r -= 8;
+      g -= 8;
+      b -= 8;
+    //Calculate amount of items allowed and clear gametext
+      itemsAllowedThisRound = directionRandomCount()
+      document.getElementById('cannotAddMoreItems').innerHTML = ''
+    //Gametext directions for length of directions array
+      if (northCount < additionalNorthText.length){
+        document.getElementById('gametext').innerHTML = "You go NORTH. " + additionalNorthText[northCount]
+        northCount++
+        totalCount++
 
-  } else {
-      document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
-      goSouth.disabled = true;
+    } else {
+        document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
+        goNorth.disabled = true;
+      }
+    
+  })
+
+  //SOUTH//
+  goSouth.addEventListener('click', function() {
+
+    if (totalCount === 28) {
+      window.open("birdqueen.html", "_self")
     }
-  
-})
 
-//EAST// 
-goEast.addEventListener('click', function() {
-  //Darken background with each click
-    document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-    r -= 8;
-    g -= 8;
-    b -= 8;
+    //Darken background with each click
+      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      r -= 8;
+      g -= 8;
+      b -= 8;
+    //Calculate amount of items allowed and clear gametext
+      itemsAllowedThisRound = directionRandomCount()
+      document.getElementById('cannotAddMoreItems').innerHTML = ''
+    //Gametext directions for length of directions array
+      if (southCount < additionalSouthText.length){
+        document.getElementById('gametext').innerHTML = "You go SOUTH. " + additionalSouthText[southCount]
+        southCount++
+        totalCount++
 
-  //Calculate amount of items allowed and clear gametext
-    itemsAllowedThisRound = directionRandomCount()
-    document.getElementById('cannotAddMoreItems').innerHTML = ''
-  //Gametext directions for length of directions array
-    if (eastCount < additionalEastText.length){
-      document.getElementById('gametext').innerHTML = "You go EAST. " + additionalEastText[eastCount]
-      eastCount++
+    } else {
+        document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
+        goSouth.disabled = true;
+      }
+    
+  })
 
-  } else {
-      document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
-      goEast.disabled = true;
+  //EAST// 
+  goEast.addEventListener('click', function() {
+
+    if (totalCount === 28) {
+      window.open("birdqueen.html", "_self")
     }
-  
-})
 
-//WEST//
-goWest.addEventListener('click', function() {
-  //Darken background with each click
-    document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-    document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-    r -= 8;
-    g -= 8;
-    b -= 8;
-  //Calculate amount of items allowed and clear gametext
-    itemsAllowedThisRound = directionRandomCount()
-    document.getElementById('cannotAddMoreItems').innerHTML = ''
-  //Gametext directions for length of directions array
-    if (westCount < additionalWestText.length){
-      document.getElementById('gametext').innerHTML = "You go WEST. " + additionalWestText[westCount]
-      westCount++
+    //Darken background with each click
+      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      r -= 8;
+      g -= 8;
+      b -= 8;
 
-  } else {
-      document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
-      goWest.disabled = true;
+    //Calculate amount of items allowed and clear gametext
+      itemsAllowedThisRound = directionRandomCount()
+      document.getElementById('cannotAddMoreItems').innerHTML = ''
+    //Gametext directions for length of directions array
+      if (eastCount < additionalEastText.length){
+        document.getElementById('gametext').innerHTML = "You go EAST. " + additionalEastText[eastCount]
+        eastCount++
+        totalCount++
+
+    } else {
+        document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
+        goEast.disabled = true;
+      }
+    
+  })
+
+  //WEST//
+  goWest.addEventListener('click', function() {
+
+    if (totalCount === 28) {
+      window.open("birdqueen.html", "_self")
     }
-  
-})
+
+    //Darken background with each click
+      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      r -= 8;
+      g -= 8;
+      b -= 8;
+    //Calculate amount of items allowed and clear gametext
+      itemsAllowedThisRound = directionRandomCount()
+      document.getElementById('cannotAddMoreItems').innerHTML = ''
+    //Gametext directions for length of directions array
+      if (westCount < additionalWestText.length){
+        document.getElementById('gametext').innerHTML = "You go WEST. " + additionalWestText[westCount]
+        westCount++
+        totalCount++
+
+    } else {
+        document.getElementById('gametext').innerHTML = "Look around here, but you can go no further in this direction. Try going another way."
+        goWest.disabled = true;
+      }
+    
+  })
+
 
 
 
@@ -310,19 +331,13 @@ addInventoryButton.addEventListener('click', function(){
   let number2 = randomNumber()
 
 
-  if (inventoryCount < 28) { //Need to calculate new total inventory based on the HALL OF THE BIRD QUEEN
+  if (inventoryCount < 30) { //Need to calculate new total inventory based on the HALL OF THE BIRD QUEEN
   items.addUserItem(number);
   itemsAddedThisRound++
   items.addComputerItem(number2);
   inventoryCount++
   } else {
-    if (userScore > computerScore) {
-      document.getElementById('winlose').innerHTML = 'You have won the bird\'s respect, and their revenge.'
-    } else if (computerScore > userScore) {
-      document.getElementById('winlose').innerHTML = 'The bird has defeated you, as it should.'
-    } else if (computerScore === userScore) {
-      document.getElementById('winlose').innerHTML = 'A tie. Leave, immediately, before they realize what\'s happened...'
-    }
+    document.getElementById('winlose').innerHTML = "Your pockets are full. You should drop some items. If the dev hasn't built in that functionality yet, please keep walking until the next stage."
   }
  } else if (itemsAddedThisRound > itemsAllowedThisRound){
    document.getElementById('cannotAddMoreItems').innerHTML = "You have found all you can here. Continue on."
@@ -339,6 +354,7 @@ resetButton.addEventListener('click', function() {
   computerInventory = []
   userScore = 0
   computerScore = 0
+  window.open("index.html", "_self")
   document.getElementById('winlose').innerHTML = ''
   document.getElementById('inventorylist').innerHTML = ''
   document.getElementById('yourscore').innerHTML = 0
@@ -348,9 +364,5 @@ resetButton.addEventListener('click', function() {
   document.getElementById('gametext').innerHTML = 'The sun is shining, the birds are...whispering?'
     //Might be fun to make a randomized list of these for the reset button. 
 })
-
-
-//to add to all direction buttons:
-
 
 

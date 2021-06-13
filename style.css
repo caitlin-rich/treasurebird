@@ -42,11 +42,25 @@ body {
     background-color: rgb(214, 213, 190);
     font-family: 'Volkhov', 'Georgia', serif;
     text-align: center;
+    color:rgb(59, 57, 35);
+
 }
 
 #birdqueenbody {
   background-color: black;
   color: white;
+  animation: fadeInAnimation ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
 }
 
 .birbs {
@@ -70,6 +84,7 @@ body {
 .BQtext {
   color: white;
 }
+
 
 #BQaddinventory {
   background-color: rgb(61, 55, 55);
@@ -113,6 +128,7 @@ h5 {
   max-width: 600px;
   margin: auto;
   padding-top: 15px;
+  color: rgb(59, 57, 35)
 }
 
 p {

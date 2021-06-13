@@ -8,31 +8,49 @@
 <h1>The Hall of the Bird Queen</h1>
 <div class = 'wrapper'>
     <div class = 'main' id = 'BQmain'>
-        <h5 class = 'BQtext'>Your eyes start to adjust to the darkness. Look around. Can you see anything?</h5>
+        <h5 class = 'BQtext'>You are no longer on the path. Your eyes start to adjust to the darkness. Look around. Can you see anything?</h5>
 
 
-        <button type='button' class = 'BQbutton' id = 'leftbutton'>Go Forward.</button><br>
-        <button type='button' class = 'BQbutton' id = 'forwardbutton'>Go Left.</button>
-        <button type='button' class = 'BQbutton' id = 'backwardbutton'>Go Right.</button><br>
-        <button type='button' class = 'BQbutton' id = 'rightbutton'>Go Backward.</button>
+        <button type='button' class = 'BQbutton' id = 'forwardbutton'>Go Forward.</button><br>
+        <button type='button' class = 'BQbutton' id = 'leftbutton'>Go Left.</button>
+        <button type='button' class = 'BQbutton' id = 'rightbutton'>Go Right.</button><br>
+        <button type='button' class = 'BQbutton' id = 'backwardbutton'>Go Backward.</button>
         <br><br>
         <h5 class = "BQtext" id='BQgametext'>Is this a cave? Or...a nest?</h5>
         <br>
         <button type="button" class="button" id = 'BQaddinventory'>What have you found?</button><br>
         <h4 id = "BQcannotAddMoreItems"></h4>
+        <p id="BQwinlose"></p>
+
+        
     </div>
 
      <div class = 'sidebar' id = 'BQsidebar'>
+         
         <h2>In Your Pockets:</h2> 
-          <p id="inventorylist">Currently, you have nothing.</p><br>
+          <p id="importinventorylist">Currently, you have nothing.</p>
+          
+        <p id = 'test'>Test</p>
+
+          <br>
           
         <h2>Your Score: <span id = 'yourscore'>0</span></h2>
         <h2>Bird Score: <span id = 'birdscore'>0</span></h2>
+        <script type = 'text/javascript'>
+            let importUserInventory = localStorage.getItem('userInventory')
+            document.getElementById('importinventorylist').innerHTML = importUserInventory
+            let importUserScore = localStorage.getItem('userScore')
+            document.getElementById('yourscore').innerHTML = importUserScore
+            let importComputerScore = localStorage.getItem('computerScore')
+            document.getElementById('birdscore').innerHTML = importComputerScore
+
+         </script>
     </div>
 
 
     </div>
-     <footer>   
+     <footer>
+        <button type="button" class="button" id = 'reset'>It's a new day.</button><br>   
      <img class = 'birbs' src="Birbs/birb_01.png">
      <img class = 'birbs' src="Birbs/birb_02.png">
      <img class = 'birbs' src="Birbs/birb_03.png">
@@ -48,4 +66,4 @@
 
 </body>
 
-<script src='treasurebaby.js'></script>
+<script src='BQjavascript.js'></script>
