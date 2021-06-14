@@ -366,5 +366,3 @@ resetButton.addEventListener('click', function() {
   document.getElementById('gametext').innerHTML = 'The sun is shining, the birds are...whispering?'
     //Might be fun to make a randomized list of these for the reset button. 
 })
-
-
