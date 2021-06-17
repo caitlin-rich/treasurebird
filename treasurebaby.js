@@ -57,7 +57,7 @@ const items = {
       if(!userInventory.includes(this.itemList[num][0])){
           userInventory.push(this.itemList[num][0]);
           userScore += this.itemList[num][1];
-          document.getElementById('inventorylist').innerHTML = userInventory.join(' • ')
+          document.getElementById('inventorylist').innerHTML = userInventory.join('<br>')
           document.getElementById('yourscore').innerHTML = userScore
           document.getElementById('inventoryGameText').innerHTML = this.itemList[num][2]
       } else {document.getElementById('inventoryGameText').innerHTML = "Hmm. You've already found one of those...you don't need two."}
@@ -110,7 +110,6 @@ function directionRandomCount () {
 const additionalNorthText = [
   "The wind blows gently, rustling the leaves and bushes. It feels cool upon your face.",
   "You encounter a field. In the distance, you can see the electricity pylons loom over the landscape.",  
-  "You come to a small clearing. A small pile of rocks sits in the middle.",
   'A small fox runs frantically across the path. What is it running from?',
   "The woods are getting deeper. Wasn't there a path here a moment ago?",
   "Is it getting darker?",
@@ -118,7 +117,6 @@ const additionalNorthText = [
 ]
 
 const additionalSouthText = [
-  'A field of wild flowers spreads out on your right, bright and joyful.',
   'Although you could hear traffic a minute ago, the noise of the cars fades into the background.',
   'The air smells like something you forgot a long time ago.',
   'A bird flies across your path, startling you, and you jump back. Something cracks beneath your heel.',
@@ -131,7 +129,6 @@ const additionalEastText = [
   'A small lake sparkles to your left. The water is clear, and waves lap gently upon the shore.',
   'A bird soars overhead. Its shadow crosses your path.',
   'A swan glides by, breaking the water\'s calm surface. Is it looking at you?',
-  'The waves are getting choppier; the air smells of rain.',
   'Clouds seem to be gathering in the distance. The sky is getting darker - or is it the air?',
   'You hear a bird screech in the distance. It almost sounds like laughter.',
   'Are you scared?'
@@ -139,7 +136,6 @@ const additionalEastText = [
 
 const additionalWestText = [
   'The smell of pine and salt permeates the air. Ferns spring up along the path, unfurling towards the sky.', 
-  'A squirrel runs up a tree, spiraling around the trunk.',
   'A lively warble breaks the silence of the forest. It sounds like a familiar song.',
   'A tree branch has broken, and hangs over the path. You touch the bark; your hand comes away sticky.',
   'The hair on the back of your neck rises. Is there someone else there?',
@@ -159,18 +155,22 @@ let itemsAllowedThisRound = null
 
 //Ominous background 
 
-let r = 214
-let g = 213
-let b = 190
+//Darkens Background
+// let r = 214
+// let g = 213
+// let b = 190
 
-function darkenBackground(r, g, b){
-  let newBackground = []
-  newBackground.push(r)
-  newBackground.push(g)
-  newBackground.push(b)
-  return "rgb(" + newBackground.join(', ') + ")"
-}
+// function darkenBackground(r, g, b){
+//   let newBackground = []
+//   newBackground.push(r)
+//   newBackground.push(g)
+//   newBackground.push(b)
+//   return "rgb(" + newBackground.join(', ') + ")"
+// }
 
+let background = document.getElementById('backgroundhornpond')
+let bgOpacity = 1;
+let bgOpacityThisRound = true;
 
 //Directions buttons//
 let goNorth = document.getElementById('northbutton')
@@ -190,7 +190,7 @@ let totalCount = 0
 
     document.getElementById('inventoryGameText').innerHTML = ''
     
-    if (totalCount === 28) {
+    if (totalCount === 21) {
       window.open("birdqueen.html", "_self")
       localStorage.setItem('userInventory', userInventory.join(' • '))
       localStorage.setItem('userScore', userScore)
@@ -198,12 +198,21 @@ let totalCount = 0
     }
 
     //Darken background with each click
-      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-      r -= 8;
-      g -= 8;
-      b -= 8;
+      // document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      // r -= 8;
+      // g -= 8;
+      // b -= 8;
+      if (bgOpacityThisRound) {
+      background.style.opacity = bgOpacity;
+      bgOpacity -= 0.1;
+      bgOpacityThisRound = false
+      } else {
+        bgOpacityThisRound = true
+      }
+      
+
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
       document.getElementById('inventoryGameText').innerHTML = ''
@@ -223,17 +232,26 @@ let totalCount = 0
   //SOUTH//
   goSouth.addEventListener('click', function() {
 
-    if (totalCount === 28) {
+    if (totalCount === 21) {
       window.open("birdqueen.html", "_self")
     }
 
     //Darken background with each click
-      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-      r -= 8;
-      g -= 8;
-      b -= 8;
+      // document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      // r -= 8;
+      // g -= 8;
+      // b -= 8;
+
+      if (bgOpacityThisRound) {
+        background.style.opacity = bgOpacity;
+        bgOpacity -= 0.1;
+        bgOpacityThisRound = false
+        } else {
+          bgOpacityThisRound = true
+        }
+        
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
       document.getElementById('inventoryGameText').innerHTML = ''
@@ -253,17 +271,26 @@ let totalCount = 0
   //EAST// 
   goEast.addEventListener('click', function() {
 
-    if (totalCount === 28) {
+    if (totalCount === 21) {
       window.open("birdqueen.html", "_self")
     }
 
     //Darken background with each click
-      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-      r -= 8;
-      g -= 8;
-      b -= 8;
+      // document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      // r -= 8;
+      // g -= 8;
+      // b -= 8;
+
+      if (bgOpacityThisRound) {
+        background.style.opacity = bgOpacity;
+        bgOpacity -= 0.1;
+        bgOpacityThisRound = false
+        } else {
+          bgOpacityThisRound = true
+        }
+        
 
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
@@ -289,12 +316,22 @@ let totalCount = 0
     }
 
     //Darken background with each click
-      document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
-      document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
-      r -= 8;
-      g -= 8;
-      b -= 8;
+      // document.querySelector("body").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".main").style.backgroundColor = darkenBackground(r, g, b);
+      // document.querySelector(".sidebar").style.backgroundColor = darkenBackground(r, g, b);
+      // r -= 8;
+      // g -= 8;
+      // b -= 8;
+
+      if (bgOpacityThisRound) {
+        background.style.opacity = bgOpacity;
+        bgOpacity -= 0.1;
+        bgOpacityThisRound = false
+        } else {
+          bgOpacityThisRound = true
+        }
+      
+        
     //Calculate amount of items allowed and clear gametext
       itemsAllowedThisRound = directionRandomCount()
       document.getElementById('inventoryGameText').innerHTML = ''
